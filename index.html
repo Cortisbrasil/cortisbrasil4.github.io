@@ -1,176 +1,417 @@
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Memórias para James | CORTIS Brasil</title>
+  <meta name="description" content="Um espaço especial criado pelos COERs para guardar mensagens e memórias para James.">
+  <style>
+    :root {
+      --green: #719b86;
+      --green-dark: #4f7563;
+      --green-soft: #edf4ef;
+      --cream: #fffdf8;
+      --ink: #24352d;
+      --muted: #65766d;
+      --white: #ffffff;
+      --shadow: 0 18px 45px rgba(40, 67, 54, .15);
+      --radius: 28px;
+    }
 
-    <title>CORTIS Brasil</title>
+    * { box-sizing: border-box; }
 
-    <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+    html { scroll-behavior: smooth; }
 
-        body {
-            background: #0d0d0d;
-            color: #ffffff;
-            font-family: Arial, Helvetica, sans-serif;
-            min-height: 100vh;
-        }
+    body {
+      margin: 0;
+      font-family: Georgia, "Times New Roman", serif;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 8% 8%, rgba(255,255,255,.35) 0 3px, transparent 4px),
+        radial-gradient(circle at 92% 20%, rgba(255,255,255,.25) 0 4px, transparent 5px),
+        var(--green-soft);
+      line-height: 1.6;
+    }
 
-        header {
-            padding: 25px 20px;
-            text-align: center;
-            border-bottom: 1px solid #292929;
-        }
+    button, input, textarea {
+      font: inherit;
+    }
 
-        header h1 {
-            font-size: 28px;
-            letter-spacing: 2px;
-        }
+    .hero {
+      min-height: 100vh;
+      padding: 34px 20px 60px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      overflow: hidden;
+      background:
+        linear-gradient(rgba(113,155,134,.94), rgba(113,155,134,.94)),
+        var(--green);
+      position: relative;
+    }
 
-        header p {
-            margin-top: 8px;
-            color: #a8a8a8;
-            font-size: 14px;
-        }
+    .doodle {
+      position: absolute;
+      color: rgba(255,255,255,.72);
+      font-family: Arial, sans-serif;
+      user-select: none;
+      pointer-events: none;
+    }
 
-        main {
-            max-width: 1000px;
-            margin: 0 auto;
-            padding: 30px 20px;
-        }
+    .d1 { top: 5%; left: 5%; font-size: 42px; transform: rotate(-12deg); }
+    .d2 { top: 11%; right: 7%; font-size: 34px; transform: rotate(15deg); }
+    .d3 { bottom: 12%; left: 4%; font-size: 38px; transform: rotate(10deg); }
+    .d4 { bottom: 8%; right: 5%; font-size: 44px; transform: rotate(-8deg); }
 
-        .hero {
-            min-height: 450px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            border-radius: 20px;
-            background: linear-gradient(
-                135deg,
-                #171717,
-                #242424
-            );
-            overflow: hidden;
-        }
+    .hero-inner {
+      width: min(940px, 100%);
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 44px;
+      align-items: center;
+      position: relative;
+      z-index: 1;
+    }
 
-        .hero-content {
-            padding: 40px 20px;
-        }
+    .intro {
+      color: white;
+      text-align: left;
+    }
 
-        .hero h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-        }
+    .eyebrow {
+      letter-spacing: .18em;
+      text-transform: uppercase;
+      font: 700 13px/1.2 Arial, sans-serif;
+      opacity: .88;
+      margin-bottom: 16px;
+    }
 
-        .hero p {
-            color: #c7c7c7;
-            font-size: 17px;
-            line-height: 1.6;
-        }
+    h1 {
+      margin: 0;
+      font-size: clamp(58px, 10vw, 104px);
+      line-height: .85;
+      font-weight: 500;
+    }
 
-        .photo-area {
-            margin-top: 30px;
-            width: 100%;
-            min-height: 300px;
-            border: 2px dashed #444;
-            border-radius: 18px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            color: #888;
-            padding: 30px;
-        }
+    .birthday {
+      display: block;
+      margin-top: 12px;
+      font-size: clamp(46px, 8vw, 82px);
+    }
 
-        .photo-area p {
-            line-height: 1.5;
-        }
+    .date {
+      display: inline-block;
+      margin-top: 22px;
+      padding: 6px 18px;
+      border: 1px solid rgba(255,255,255,.6);
+      border-radius: 999px;
+      font: 700 15px Arial, sans-serif;
+      letter-spacing: .16em;
+    }
 
-        .section {
-            margin-top: 45px;
-        }
+    .intro p {
+      max-width: 480px;
+      font-size: 18px;
+      margin: 28px 0 0;
+    }
 
-        .section h2 {
-            font-size: 25px;
-            margin-bottom: 15px;
-        }
+    .polaroid {
+      background: var(--white);
+      padding: 18px 18px 28px;
+      box-shadow: var(--shadow);
+      transform: rotate(1.2deg);
+      max-width: 560px;
+      justify-self: center;
+    }
 
-        .section p {
-            color: #bdbdbd;
-            line-height: 1.7;
-        }
+    .polaroid img {
+      display: block;
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      object-fit: cover;
+      background: #dce8e1;
+    }
 
-        footer {
-            margin-top: 60px;
-            padding: 25px 20px;
-            text-align: center;
-            border-top: 1px solid #292929;
-            color: #777;
-            font-size: 13px;
-        }
+    .polaroid-caption {
+      text-align: center;
+      margin-top: 12px;
+      font-size: 25px;
+      font-style: italic;
+      color: #52655b;
+    }
 
-        @media (max-width: 600px) {
-            .hero {
-                min-height: 380px;
-            }
+    .section {
+      width: min(980px, calc(100% - 32px));
+      margin: 0 auto;
+      padding: 80px 0;
+    }
 
-            .hero h2 {
-                font-size: 32px;
-            }
+    .section-card {
+      background: rgba(255,255,255,.9);
+      border: 1px solid rgba(79,117,99,.12);
+      border-radius: var(--radius);
+      padding: clamp(28px, 5vw, 54px);
+      box-shadow: 0 10px 35px rgba(40,67,54,.08);
+    }
 
-            .hero p {
-                font-size: 15px;
-            }
-        }
-    </style>
+    .section h2 {
+      margin: 0 0 12px;
+      font-size: clamp(32px, 5vw, 50px);
+      font-weight: 500;
+      color: var(--green-dark);
+      line-height: 1.05;
+    }
+
+    .section .lead {
+      color: var(--muted);
+      font-size: 18px;
+      max-width: 760px;
+    }
+
+    .memory-grid {
+      margin-top: 32px;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+    }
+
+    .memory-type {
+      padding: 24px 18px;
+      border-radius: 22px;
+      background: var(--green-soft);
+      text-align: center;
+    }
+
+    .memory-type .icon {
+      font-size: 30px;
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    .memory-type strong {
+      display: block;
+      font-size: 18px;
+      color: var(--green-dark);
+    }
+
+    .memory-type span {
+      display: block;
+      margin-top: 4px;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    .cta {
+      text-align: center;
+      margin-top: 34px;
+    }
+
+    .button {
+      display: inline-block;
+      border: 0;
+      border-radius: 999px;
+      padding: 14px 25px;
+      background: var(--green-dark);
+      color: white;
+      text-decoration: none;
+      font: 700 15px Arial, sans-serif;
+      cursor: pointer;
+      transition: transform .2s, background .2s;
+    }
+
+    .button:hover {
+      transform: translateY(-2px);
+      background: #3e604f;
+    }
+
+    .notice {
+      margin-top: 20px;
+      padding: 16px 18px;
+      border-left: 4px solid var(--green);
+      background: #f3f8f5;
+      color: var(--muted);
+      border-radius: 10px;
+      font-size: 14px;
+    }
+
+    .memories {
+      background: #e7f0ea;
+    }
+
+    .empty {
+      margin-top: 30px;
+      padding: 38px 20px;
+      border: 1px dashed rgba(79,117,99,.35);
+      border-radius: 20px;
+      text-align: center;
+      color: var(--muted);
+    }
+
+    footer {
+      padding: 44px 20px 60px;
+      text-align: center;
+      color: #60746a;
+      font-size: 14px;
+    }
+
+    footer strong {
+      color: var(--green-dark);
+    }
+
+    @media (max-width: 760px) {
+      .hero {
+        min-height: auto;
+        padding-top: 60px;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 42px;
+      }
+
+      .intro {
+        text-align: center;
+      }
+
+      .intro p {
+        margin-left: auto;
+        margin-right: auto;
+      }
+
+      .polaroid {
+        width: min(92vw, 520px);
+      }
+
+      .memory-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .section {
+        padding: 52px 0;
+      }
+    }
+  </style>
 </head>
 
 <body>
 
-    <header>
-        <h1>CORTIS BRASIL</h1>
-        <p>Um espaço dedicado ao CORTIS</p>
-    </header>
+  <header class="hero">
+    <span class="doodle d1">♡</span>
+    <span class="doodle d2">♡</span>
+    <span class="doodle d3">✦</span>
+    <span class="doodle d4">♡</span>
 
-    <main>
+    <div class="hero-inner">
+      <div class="intro">
+        <div class="eyebrow">CORTIS Brasil · para os COERs</div>
+        <h1>
+          Happy
+          <span class="birthday">Birthday</span>
+        </h1>
+        <div class="date">14.10</div>
 
-        <section class="hero">
-            <div class="hero-content">
-                <h2>CORTIS Brasil</h2>
+        <p>
+          Criando memórias que permanecerão para sempre.
+          Um espaço feito para guardar, com carinho, as palavras
+          que os COERs quiserem deixar para James.
+        </p>
+      </div>
 
-                <p>
-                    Bem-vindos ao nosso espaço dedicado ao CORTIS.
-                    <br>
-                    Em breve, novidades por aqui.
-                </p>
-            </div>
-        </section>
+      <div class="polaroid">
+        <!-- Depois vamos colocar aqui o nome exato da foto enviada -->
+        <img src="james-birthday.jpg" alt="James em uma foto especial de aniversário">
+        <div class="polaroid-caption">14.10</div>
+      </div>
+    </div>
+  </header>
 
-        <section class="photo-area">
-            <p>
-                A imagem principal será adicionada aqui.
-            </p>
-        </section>
+  <main>
+    <section class="section">
+      <div class="section-card">
+        <h2>Uma memória para guardar</h2>
 
-        <section class="section">
-            <h2>Sobre o projeto</h2>
+        <p class="lead">
+          O aniversário passa, mas algumas palavras merecem permanecer.
+          Este espaço foi criado para reunir pequenas partes do carinho
+          dos COERs e transformar cada uma delas em uma memória especial.
+        </p>
 
-            <p>
-                Este site foi criado para reunir informações,
-                conteúdos e atualizações relacionadas ao CORTIS.
-            </p>
-        </section>
+        <div class="memory-grid">
+          <div class="memory-type">
+            <span class="icon">💌</span>
+            <strong>Cartas</strong>
+            <span>Uma mensagem escrita especialmente para James.</span>
+          </div>
 
-    </main>
+          <div class="memory-type">
+            <span class="icon">🎨</span>
+            <strong>Desenhos</strong>
+            <span>Arte, ilustrações e criações feitas pelos COERs.</span>
+          </div>
 
-    <footer>
-        © CORTIS Brasil
-    </footer>
+          <div class="memory-type">
+            <span class="icon">📷</span>
+            <strong>Edits</strong>
+            <span>Fotos e edições preparadas para essa data.</span>
+          </div>
+        </div>
+
+        <div class="cta">
+          <a class="button" href="#enviar">Quero deixar uma memória</a>
+        </div>
+
+        <div class="notice">
+          As homenagens serão revisadas antes de aparecerem no memorial.
+          Assim, somente as contribuições aprovadas pela organização
+          serão publicadas.
+        </div>
+      </div>
+    </section>
+
+    <section class="section memories" id="enviar">
+      <div class="section-card">
+        <h2>Deixe sua mensagem</h2>
+
+        <p class="lead">
+          Esta área será conectada ao formulário de envio na próxima etapa.
+          Por enquanto, ela serve como a estrutura visual do memorial.
+        </p>
+
+        <div class="empty">
+          <strong>O formulário será aberto aqui.</strong><br>
+          Você poderá enviar sua carta, desenho, edit ou outra homenagem.
+        </div>
+
+        <div class="notice">
+          O envio ficará disponível até <strong>14 de outubro</strong>.
+          Depois dessa data, os novos envios serão encerrados, mas o
+          memorial continuará disponível para consulta.
+        </div>
+      </div>
+    </section>
+
+    <section class="section">
+      <div class="section-card">
+        <h2>Memórias dos COERs</h2>
+
+        <p class="lead">
+          As homenagens aprovadas aparecerão aqui, reunidas em um espaço
+          criado para preservar cada mensagem.
+        </p>
+
+        <div class="empty">
+          <strong>Em breve, este espaço será preenchido pelas memórias.</strong><br>
+          Cada contribuição aprovada ganhará seu próprio lugar.
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    Feito com carinho pelos <strong>COERs</strong> e pela CORTIS Brasil.
+    <br>
+    Algumas memórias merecem ficar para sempre. ♡
+  </footer>
 
 </body>
-      </html>
+</html>
